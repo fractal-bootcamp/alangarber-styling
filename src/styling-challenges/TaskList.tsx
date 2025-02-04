@@ -36,7 +36,7 @@ const TaskListData: TaskInterface[] = [
 
 function TaskList() {
   const [taskListData, setTaskListData] = useState(TaskListData);
-  const [myParent] = useAutoAnimate()
+  const [myParent] = useAutoAnimate();
 
   return (
     <>

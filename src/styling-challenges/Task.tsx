@@ -31,6 +31,7 @@ function Task() {
             return (
               <ListItem
                 {...task}
+                key={task.id}
                 idx={idx}
                 taskListData={taskData}
                 setTaskListData={setTaskData}

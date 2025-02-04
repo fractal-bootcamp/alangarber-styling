@@ -2,6 +2,7 @@ import { useState } from "react";
 import Task from "./styling-challenges/Task";
 import TaskList from "./styling-challenges/TaskList";
 import MessageThread from "./styling-challenges/MessageThread";
+import Post from "./styling-challenges/Post";
 
 function App() {
   const [tab, setTab] = useState("Task");
@@ -99,6 +100,7 @@ function App() {
       {tab === "Task" && <Task />}
       {tab === "Task List" && <TaskList />}
       {tab === "Message Thread" && <MessageThread />}
+      {tab === "Post" && <Post />}
     </>
   );
 }

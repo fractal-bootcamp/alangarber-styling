@@ -26,14 +26,11 @@ const Message = ({
       )}
       <div className="col-span-11 content-center">
         {" "}
-       <div
-          className={`flex items-center ps-4 border border-gray-100 ${nextAuthor && authorIsOwner ? `rounded-br-xs` : ``} ${prevAuthor && authorIsOwner ? `rounded-tr-xs` : ``} ${nextAuthor && !authorIsOwner ? `rounded-tl-xs` : ``} ${prevAuthor && !authorIsOwner ? `rounded-bl-xs` : ``} rounded-2xl border-gray-300 ${authorIsOwner ? `bg-blue-300` : `bg-gray-300` } `}
+        <div
+          className={`flex items-center ps-4 border border-gray-100 ${nextAuthor && authorIsOwner ? `rounded-br-xs` : ``} ${prevAuthor && authorIsOwner ? `rounded-tr-xs` : ``} ${nextAuthor && !authorIsOwner ? `rounded-tl-xs` : ``} ${prevAuthor && !authorIsOwner ? `rounded-bl-xs` : ``} rounded-2xl border-gray-300 ${authorIsOwner ? `bg-blue-300` : `bg-gray-300`} `}
         >
           <div className="flex flex-col">
-            <label
-              htmlFor="bordered-checkbox-1"
-              className="w-full py-4 px-4 text-sm font-medium text-black"
-            >
+            <label className="w-full py-4 px-4 text-sm font-medium text-black">
               {text}
             </label>
           </div>

@@ -42,9 +42,13 @@ function MessageThread() {
               <Message
                 authorIsOwner={message.user === owner}
                 name={message.user.name}
-                prevAuthor={MessageThreadData[message.conversationIndex - 1]?.user === message.user}
+                prevAuthor={
+                  MessageThreadData[message.conversationIndex - 1]?.user ===
+                  message.user
+                }
                 nextAuthor={
-                  MessageThreadData[message.conversationIndex + 1]?.user === message.user
+                  MessageThreadData[message.conversationIndex + 1]?.user ===
+                  message.user
                 }
                 text={message.text}
                 image={message.user.image}
