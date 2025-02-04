@@ -1,17 +1,18 @@
 import { useState } from "react";
 import Task from "./styling-challenges/Task";
 import TaskList from "./styling-challenges/TaskList";
+import MessageThread from "./styling-challenges/MessageThread";
 
 function App() {
   const [tab, setTab] = useState("Task");
 
   return (
     <>
-      <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+      <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-100 dark:text-gray-400 dark:border-gray-700">
         <ul className="flex flex-wrap -mb-px">
           <li className="me-2" onClick={() => setTab("Task")}>
             {tab !== "Task" ? (
-              <a className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
+              <a className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-100 dark:hover:text-gray-100">
                 Task
               </a>
             ) : (
@@ -25,7 +26,7 @@ function App() {
           </li>
           <li className="me-2" onClick={() => setTab("Task List")}>
             {tab !== "Task List" ? (
-              <a className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
+              <a className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-100 dark:hover:text-gray-100">
                 Task List
               </a>
             ) : (
@@ -39,7 +40,7 @@ function App() {
           </li>
           <li className="me-2" onClick={() => setTab("Message Thread")}>
             {tab !== "Message Thread" ? (
-              <a className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
+              <a className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-100 dark:hover:text-gray-100">
                 Message Thread
               </a>
             ) : (
@@ -53,7 +54,7 @@ function App() {
           </li>
           <li className="me-2" onClick={() => setTab("Post")}>
             {tab !== "Post" ? (
-              <a className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
+              <a className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-100 dark:hover:text-gray-100">
                 Post
               </a>
             ) : (
@@ -67,7 +68,7 @@ function App() {
           </li>
           <li className="me-2" onClick={() => setTab("Heat Grid")}>
             {tab !== "Heat Grid" ? (
-              <a className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
+              <a className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-100 dark:hover:text-gray-100">
                 Heat Grid
               </a>
             ) : (
@@ -81,7 +82,7 @@ function App() {
           </li>
           <li className="me-2" onClick={() => setTab("Tab Descriptor")}>
             {tab !== "Tab Descriptor" ? (
-              <a className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
+              <a className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-100 dark:hover:text-gray-100">
                 Tab Descriptor
               </a>
             ) : (
@@ -97,6 +98,7 @@ function App() {
       </div>
       {tab === "Task" && <Task />}
       {tab === "Task List" && <TaskList />}
+      {tab === "Message Thread" && <MessageThread />}
     </>
   );
 }

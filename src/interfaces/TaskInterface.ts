@@ -2,6 +2,6 @@ export interface TaskInterface {
   id: number;
   item: string;
   explanation: string;
-  initialStatus: boolean;
+  status: boolean;
   indicator: boolean;
 }

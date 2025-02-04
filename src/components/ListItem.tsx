@@ -1,21 +1,23 @@
+import { TaskInterface } from "../interfaces/TaskInterface";
+
 interface ListItemProps {
-  id: number;
+  idx: number;
   item: string;
   explanation: string;
-  completion: boolean[];
   indicator: boolean;
-  setCompletion: React.Dispatch<React.SetStateAction<boolean[]>>;
+  taskListData: TaskInterface[];
+  setTaskListData: React.Dispatch<React.SetStateAction<TaskInterface[]>>;
 }
 
 const ListItem = ({
-  id,
+  idx,
   item,
   explanation,
-  completion,
   indicator,
-  setCompletion,
+  taskListData,
+  setTaskListData,
 }: ListItemProps) => {
-  const checked: boolean = completion[id];
+  const checked: boolean = taskListData[idx].status;
 
   return (
     <div>
@@ -23,8 +25,8 @@ const ListItem = ({
       <div
         className={
           checked
-            ? `flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700 bg-green-300`
-            : `flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700 bg-white`
+            ? `flex items-center ps-4 border rounded-sm bg-green-300`
+            : `flex items-center ps-4 border rounded-sm bg-white`
         }
       >
         <input
@@ -34,14 +36,14 @@ const ListItem = ({
           name="bordered-checkbox"
           className={
             checked
-              ? `appearance-none w-4 h-4 border-2 border-gray-300 rounded-sm bg-green-600`
-              : `appearance-none w-4 h-4 border-2 border-gray-300 rounded-sm bg-white`
+              ? `appearance-none w-4 h-4 border-2 border-gray-100 rounded-sm bg-green-600`
+              : `appearance-none w-4 h-4 border-2 border-gray-100 rounded-sm bg-white`
           }
           onChange={() =>
-            setCompletion([
-              ...completion.slice(0, id),
-              !checked,
-              ...completion.slice(id + 1),
+            setTaskListData([
+              ...taskListData.slice(0, idx),
+              { ...taskListData[idx], status: !checked },
+              ...taskListData.slice(idx + 1),
             ])
           }
         />

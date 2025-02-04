@@ -4,39 +4,37 @@ import { TaskInterface } from "../interfaces/TaskInterface";
 
 const TaskListData: TaskInterface[] = [
   {
-    id: 0,
+    id: 200,
     item: "Dishwashing",
     explanation: "Wash and dry dishes, pots, pans, and utensils",
-    initialStatus: true,
+    status: true,
     indicator: false,
   },
   {
-    id: 1,
+    id: 201,
     item: "Laundry",
     explanation: "Wash, dry, fold, and put away clothes and linens.",
-    initialStatus: false,
+    status: false,
     indicator: false,
   },
   {
-    id: 2,
+    id: 202,
     item: "Vacuuming",
     explanation: "Vacuum carpets, rugs, and floors throughout the house",
-    initialStatus: false,
+    status: false,
     indicator: false,
   },
   {
-    id: 3,
+    id: 203,
     item: "Dusting",
     explanation: "Dust furniture, shelves, and other surfaces",
-    initialStatus: false,
+    status: false,
     indicator: false,
   },
 ];
 
 function TaskList() {
-  const [completion, setCompletion] = useState(
-    TaskListData.map((datum) => datum.initialStatus),
-  );
+  const [taskListData, setTaskListData] = useState(TaskListData);
 
   return (
     <>
@@ -44,17 +42,18 @@ function TaskList() {
         <div className="text-3xl">Task List</div>
         <div className="text-lg">Sorted by completion</div>
         <div className="flex flex-col gap-4 mt-4">
-          {TaskListData.sort((a, b) =>
-            completion[a.id] < completion[b.id] ? 1 : -1,
-          ).map((datum: TaskInterface) => {
-            return (
-              <ListItem
-                {...datum}
-                completion={completion}
-                setCompletion={setCompletion}
-              />
-            );
-          })}
+          {taskListData
+            .sort((a, b) => (a.status < b.status ? 1 : -1))
+            .map((task: TaskInterface, idx) => {
+              return (
+                <ListItem
+                  {...task}
+                  idx={idx}
+                  taskListData={taskListData}
+                  setTaskListData={setTaskListData}
+                />
+              );
+            })}
         </div>
       </div>
     </>

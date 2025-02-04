@@ -3,3 +3,9 @@
 body {
   background-color: lightgray;
 }
+
+@layer utilities {
+  .clip-circle {
+    clip-path: circle();
+  }
+}
