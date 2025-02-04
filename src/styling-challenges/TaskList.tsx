@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ListItem from "../components/ListItem";
 import { TaskInterface } from "../interfaces/TaskInterface";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const TaskListData: TaskInterface[] = [
   {
@@ -35,18 +36,20 @@ const TaskListData: TaskInterface[] = [
 
 function TaskList() {
   const [taskListData, setTaskListData] = useState(TaskListData);
+  const [myParent] = useAutoAnimate()
 
   return (
     <>
       <div className="p-4">
         <div className="text-3xl">Task List</div>
         <div className="text-lg">Sorted by completion</div>
-        <div className="flex flex-col gap-4 mt-4">
+        <div ref={myParent} className="flex flex-col gap-4 mt-4">
           {taskListData
             .sort((a, b) => (a.status < b.status ? 1 : -1))
             .map((task: TaskInterface, idx) => {
               return (
                 <ListItem
+                  key={task.id}
                   {...task}
                   idx={idx}
                   taskListData={taskListData}
