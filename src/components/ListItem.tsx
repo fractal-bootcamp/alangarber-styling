@@ -51,10 +51,7 @@ const ListItem = ({
             className="w-full py-4 ms-2 text-sm font-medium text-black"
           >
             {item}
-            <p className="text-sm font-light text-gray-400">
-              {explanation}
-              {completion.toString()}
-            </p>
+            <p className="text-sm font-light text-gray-400">{explanation}</p>
           </label>
         </div>
       </div>
