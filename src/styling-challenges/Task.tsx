@@ -1,37 +1,42 @@
+import { useState } from "react";
 import ListItem from "../components/ListItem";
+import { TaskInterface } from "../interfaces/TaskInterface";
 
-interface Task {
-  id: number,
-  item: string,
-  explanation: string,
-  initialStatus: boolean
-}
-
-const TaskData: Task[] = [
+const TaskData: TaskInterface[] = [
   {
     id: 0,
     item: "Sweep the Kitchen",
     explanation: "Get under the cabinets, do a good job",
-    initialStatus: false,
+    status: false,
+    indicator: true,
   },
   {
     id: 1,
     item: "Sweep the Kitchen",
     explanation: "Get under the cabinets, do a good job",
-    initialStatus: true,
+    status: true,
+    indicator: true,
   },
 ];
 
 function Task() {
+  const [taskData, setTaskData] = useState(TaskData);
+
   return (
     <>
       <div className="p-4">
         <div className="text-3xl">Task</div>
         <div className="flex flex-col gap-4 mt-4">
-          {TaskData.map((datum: Task) => {
+          {TaskData.map((task: TaskInterface, idx) => {
             return (
-              <ListItem {...datum} initialCheckedStatus={datum.initialStatus} />
-            )
+              <ListItem
+                {...task}
+                key={task.id}
+                idx={idx}
+                taskListData={taskData}
+                setTaskListData={setTaskData}
+              />
+            );
           })}
         </div>
       </div>
