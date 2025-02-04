@@ -1,21 +1,25 @@
-import { useState } from "react";
-
 interface ListItemProps {
+  id: number;
   item: string;
   explanation: string;
-  initialCheckedStatus: boolean;
+  completion: boolean[];
+  indicator: boolean;
+  setCompletion: React.Dispatch<React.SetStateAction<boolean[]>>;
 }
 
 const ListItem = ({
+  id,
   item,
   explanation,
-  initialCheckedStatus,
+  completion,
+  indicator,
+  setCompletion,
 }: ListItemProps) => {
-  const [checked, setChecked] = useState(initialCheckedStatus);
+  const checked: boolean = completion[id];
 
   return (
     <div>
-      <p>{checked ? "Complete" : "Incomplete"}</p>
+      {indicator ? <p>{checked ? "Complete" : "Incomplete"}</p> : <div></div>}
       <div
         className={
           checked
@@ -33,7 +37,13 @@ const ListItem = ({
               ? `appearance-none w-4 h-4 border-2 border-gray-300 rounded-sm bg-green-600`
               : `appearance-none w-4 h-4 border-2 border-gray-300 rounded-sm bg-white`
           }
-          onChange={() => setChecked(!checked)}
+          onChange={() =>
+            setCompletion([
+              ...completion.slice(0, id),
+              !checked,
+              ...completion.slice(id + 1),
+            ])
+          }
         />
         <div className="flex flex-col">
           <label
@@ -41,7 +51,10 @@ const ListItem = ({
             className="w-full py-4 ms-2 text-sm font-medium text-black"
           >
             {item}
-            <p className="text-sm font-light text-gray-400">{explanation}</p>
+            <p className="text-sm font-light text-gray-400">
+              {explanation}
+              {completion.toString()}
+            </p>
           </label>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Task from "./styling-challenges/Task";
+import TaskList from "./styling-challenges/TaskList";
 
 function App() {
   const [tab, setTab] = useState("Task");
@@ -95,6 +96,7 @@ function App() {
         </ul>
       </div>
       {tab === "Task" && <Task />}
+      {tab === "Task List" && <TaskList />}
     </>
   );
 }
