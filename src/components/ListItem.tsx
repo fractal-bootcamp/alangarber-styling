@@ -1,21 +1,25 @@
-import { useState } from "react";
-
 interface ListItemProps {
-    item: string,
-    explanation: string,
-    initialCheckedStatus: boolean,
+  id: number;
+  item: string;
+  explanation: string;
+  completion: boolean[];
+  indicator: boolean;
+  setCompletion: React.Dispatch<React.SetStateAction<boolean[]>>;
 }
 
 const ListItem = ({
-item,
-explanation,
-initialCheckedStatus,
+  id,
+  item,
+  explanation,
+  completion,
+  indicator,
+  setCompletion,
 }: ListItemProps) => {
-  const [checked, setChecked] = useState(initialCheckedStatus);
+  const checked: boolean = completion[id];
 
   return (
     <div>
-      <p>{checked ? "Complete" : "Incomplete"}</p>
+      {indicator ? <p>{checked ? "Complete" : "Incomplete"}</p> : <div></div>}
       <div
         className={
           checked
@@ -28,8 +32,18 @@ initialCheckedStatus,
           type="checkbox"
           value=""
           name="bordered-checkbox"
-          className="appearance-none w-4 h-4 border-2 border-gray-300 rounded-sm bg-white checked:bg-green-600"
-          onChange={() => setChecked(!checked)}
+          className={
+            checked
+              ? `appearance-none w-4 h-4 border-2 border-gray-300 rounded-sm bg-green-600`
+              : `appearance-none w-4 h-4 border-2 border-gray-300 rounded-sm bg-white`
+          }
+          onChange={() =>
+            setCompletion([
+              ...completion.slice(0, id),
+              !checked,
+              ...completion.slice(id + 1),
+            ])
+          }
         />
         <div className="flex flex-col">
           <label
@@ -43,6 +57,6 @@ initialCheckedStatus,
       </div>
     </div>
   );
-}
+};
 
 export default ListItem;
