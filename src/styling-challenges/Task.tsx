@@ -1,10 +1,10 @@
 import ListItem from "../components/ListItem";
 
 interface Task {
-  id: number,
-  item: string,
-  explanation: string,
-  initialStatus: boolean
+  id: number;
+  item: string;
+  explanation: string;
+  initialStatus: boolean;
 }
 
 const TaskData: Task[] = [
@@ -31,7 +31,7 @@ function Task() {
           {TaskData.map((datum: Task) => {
             return (
               <ListItem {...datum} initialCheckedStatus={datum.initialStatus} />
-            )
+            );
           })}
         </div>
       </div>

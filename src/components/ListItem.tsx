@@ -1,15 +1,15 @@
 import { useState } from "react";
 
 interface ListItemProps {
-    item: string,
-    explanation: string,
-    initialCheckedStatus: boolean,
+  item: string;
+  explanation: string;
+  initialCheckedStatus: boolean;
 }
 
 const ListItem = ({
-item,
-explanation,
-initialCheckedStatus,
+  item,
+  explanation,
+  initialCheckedStatus,
 }: ListItemProps) => {
   const [checked, setChecked] = useState(initialCheckedStatus);
 
@@ -28,7 +28,11 @@ initialCheckedStatus,
           type="checkbox"
           value=""
           name="bordered-checkbox"
-          className={checked ? `appearance-none w-4 h-4 border-2 border-gray-300 rounded-sm bg-green-600` : `appearance-none w-4 h-4 border-2 border-gray-300 rounded-sm bg-white`}
+          className={
+            checked
+              ? `appearance-none w-4 h-4 border-2 border-gray-300 rounded-sm bg-green-600`
+              : `appearance-none w-4 h-4 border-2 border-gray-300 rounded-sm bg-white`
+          }
           onChange={() => setChecked(!checked)}
         />
         <div className="flex flex-col">
@@ -43,6 +47,6 @@ initialCheckedStatus,
       </div>
     </div>
   );
-}
+};
 
 export default ListItem;
