@@ -1,26 +1,32 @@
-import { useState } from "react";
+import { TaskInterface } from "../interfaces/TaskInterface";
 
 interface ListItemProps {
-    item: string,
-    explanation: string,
-    initialCheckedStatus: boolean,
+  idx: number;
+  item: string;
+  explanation: string;
+  indicator: boolean;
+  taskListData: TaskInterface[];
+  setTaskListData: React.Dispatch<React.SetStateAction<TaskInterface[]>>;
 }
 
 const ListItem = ({
-item,
-explanation,
-initialCheckedStatus,
+  idx,
+  item,
+  explanation,
+  indicator,
+  taskListData,
+  setTaskListData,
 }: ListItemProps) => {
-  const [checked, setChecked] = useState(initialCheckedStatus);
+  const checked: boolean = taskListData[idx].status;
 
   return (
     <div>
-      <p>{checked ? "Complete" : "Incomplete"}</p>
+      {indicator ? <p>{checked ? "Complete" : "Incomplete"}</p> : <div></div>}
       <div
         className={
           checked
-            ? `flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700 bg-green-300`
-            : `flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700 bg-white`
+            ? `flex items-center ps-4 border rounded-sm bg-green-300`
+            : `flex items-center ps-4 border rounded-sm bg-white`
         }
       >
         <input
@@ -28,8 +34,18 @@ initialCheckedStatus,
           type="checkbox"
           value=""
           name="bordered-checkbox"
-          className="appearance-none w-4 h-4 border-2 border-gray-300 rounded-sm bg-white checked:bg-green-600"
-          onChange={() => setChecked(!checked)}
+          className={
+            checked
+              ? `appearance-none w-4 h-4 border-2 border-gray-100 rounded-sm bg-green-600`
+              : `appearance-none w-4 h-4 border-2 border-gray-100 rounded-sm bg-white`
+          }
+          onChange={() =>
+            setTaskListData([
+              ...taskListData.slice(0, idx),
+              { ...taskListData[idx], status: !checked },
+              ...taskListData.slice(idx + 1),
+            ])
+          }
         />
         <div className="flex flex-col">
           <label
@@ -43,6 +59,6 @@ initialCheckedStatus,
       </div>
     </div>
   );
-}
+};
 
 export default ListItem;
